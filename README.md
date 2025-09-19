@@ -68,6 +68,7 @@ An AI-powered cybersecurity threat analysis tool built with Large Language Model
    ollama serve
    
    # Terminal 2: Start Backend (auto-setup)
+   cd backend
    python run.py
    ```
 

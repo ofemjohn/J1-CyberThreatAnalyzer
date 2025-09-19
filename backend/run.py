@@ -30,14 +30,14 @@ def check_python():
 
 def setup_virtual_environment():
     """Set up virtual environment if it doesn't exist"""
-    venv_path = Path("backend/venv")
+    venv_path = Path("venv")
     
     if venv_path.exists():
         print("✅ Virtual environment already exists")
         return True
     
     print("🔧 Creating virtual environment...")
-    success, stdout, stderr = run_command("python -m venv backend/venv")
+    success, stdout, stderr = run_command("python -m venv venv")
     
     if success:
         print("✅ Virtual environment created successfully")
@@ -49,9 +49,9 @@ def setup_virtual_environment():
 def get_activation_command():
     """Get the correct activation command based on OS"""
     if platform.system() == "Windows":
-        return "backend\\venv\\Scripts\\activate"
+        return "venv\\Scripts\\activate"
     else:
-        return "source backend/venv/bin/activate"
+        return "source venv/bin/activate"
 
 def install_dependencies():
     """Install required dependencies"""
@@ -59,11 +59,11 @@ def install_dependencies():
     
     # Determine the correct pip command
     if platform.system() == "Windows":
-        pip_cmd = "backend\\venv\\Scripts\\pip"
+        pip_cmd = "venv\\Scripts\\pip"
     else:
-        pip_cmd = "backend/venv/bin/pip"
+        pip_cmd = "venv/bin/pip"
     
-    success, stdout, stderr = run_command(f"{pip_cmd} install -r backend/requirements.txt")
+    success, stdout, stderr = run_command(f"{pip_cmd} install -r requirements.txt")
     
     if success:
         print("✅ Dependencies installed successfully")
@@ -92,9 +92,9 @@ def start_backend():
     
     # Determine the correct python command
     if platform.system() == "Windows":
-        python_cmd = "backend\\venv\\Scripts\\python"
+        python_cmd = "venv\\Scripts\\python"
     else:
-        python_cmd = "backend/venv/bin/python"
+        python_cmd = "venv/bin/python"
     
     print("=" * 60)
     print("🛡️  J1-CyberThreatAnalyzer Backend Starting...")
@@ -108,7 +108,7 @@ def start_backend():
     
     try:
         # Run the backend server
-        subprocess.run([python_cmd, "backend/main.py"], cwd=".")
+        subprocess.run([python_cmd, "main.py"], cwd=".")
     except KeyboardInterrupt:
         print("\n🛑 Server stopped by user")
     except Exception as e:
@@ -120,9 +120,9 @@ def main():
     print("=" * 50)
     
     # Check if we're in the right directory
-    if not Path("backend/main.py").exists():
-        print("❌ Please run this script from the J1-CyberThreatAnalyzer root directory")
-        print("   The backend/main.py file should be present")
+    if not Path("main.py").exists():
+        print("❌ Please run this script from the backend directory")
+        print("   The main.py file should be present")
         return
     
     # Step 1: Check Python
