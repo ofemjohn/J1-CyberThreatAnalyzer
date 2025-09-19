@@ -25,6 +25,7 @@ An AI-powered cybersecurity threat analysis tool built with Large Language Model
 
 ### Prerequisites
 - Python 3.12+
+- Node.js 16+
 - Ollama installed locally
 - Llama 3.2:3b model
 
@@ -44,7 +45,13 @@ An AI-powered cybersecurity threat analysis tool built with Large Language Model
    pip install -r requirements.txt
    ```
 
-3. **Install and Run Ollama**
+3. **Set up Frontend**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+4. **Install and Run Ollama**
    ```bash
    # Install Ollama (if not already installed)
    curl -fsSL https://ollama.ai/install.sh | sh
@@ -53,18 +60,27 @@ An AI-powered cybersecurity threat analysis tool built with Large Language Model
    ollama pull llama3.2:3b
    ```
 
-4. **Run the Application**
+5. **Run the Application**
+
+   **Backend Setup (Automated)**
    ```bash
    # Terminal 1: Start Ollama
    ollama serve
    
-   # Terminal 2: Start Backend
-   cd backend
-   source venv/bin/activate
-   python main.py
+   # Terminal 2: Start Backend (auto-setup)
+   python run.py
    ```
 
-5. **Access the Application**
+   **Frontend Setup (Manual)**
+   ```bash
+   # Terminal 3: Start Frontend
+   cd frontend
+   npm install
+   npm start
+   ```
+
+6. **Access the Application**
+   - Frontend: http://localhost:3000
    - Backend API: http://localhost:8000
    - API Documentation: http://localhost:8000/docs
 
@@ -94,6 +110,7 @@ The tool is tested with various threat scenarios:
 
 ## 🛠️ Technology Stack
 
+- **Frontend**: React.js, TypeScript, CSS3
 - **Backend**: FastAPI, Python 3.12
 - **LLM**: Ollama with Llama 3.2:3b
 - **Analysis**: Custom threat detection algorithms
